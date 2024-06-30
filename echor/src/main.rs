@@ -1,4 +1,4 @@
-use clap::{Command, Arg};
+use clap::{Command, Arg, ArgAction};
 
 fn main() {
     let matches = Command::new("echor")
@@ -16,7 +16,7 @@ fn main() {
         .arg(
             Arg::new("omit_newline")
             .short('n')
-            .num_args(0)
+            .action(ArgAction::SetTrue)
             .help("Do not print newline")
         )
         .get_matches();
