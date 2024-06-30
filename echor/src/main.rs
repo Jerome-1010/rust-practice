@@ -10,8 +10,8 @@ fn main() {
                 .value_name("TEXT")
                 .help("Input text")
                 .required(true)
+                .action(ArgAction::Append)
                 .num_args(1..)
-                // .action(ArgAction::Set),
         )
         .arg(
             Arg::new("omit_newline")
@@ -21,5 +21,9 @@ fn main() {
         )
         .get_matches();
 
-    println!("{:#?}", matches);
+    let text = matches.get_many::<String>("text").unwrap();
+    let omit_newline = matches.get_flag("omit_newline");
+
+    println!("{:#?}{}", text, if omit_newline { "" } else { "\n" });
+    println!("{:#?}", omit_newline);
 }
